@@ -19,6 +19,10 @@ docker build --platform=linux/amd64 -t <docker-user>/mistral-rag:latest .
 docker push <docker-user>/mistral-rag:latest
 ```
 
+or use: `docker pull pfh42/ollama-local:latest`
+
+https://hub.docker.com/repository/docker/pfh42/ollama-local/general
+
 1. **Deploy docker image:**
 
 ```
