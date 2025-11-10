@@ -1,4 +1,4 @@
-# Ollama-Local-Docker
+# Webui-Ollama-Docker
 
 This project sets up Ollama, Open WebUI, and model loading within a Docker container.
 
@@ -14,29 +14,28 @@ This project sets up Ollama, Open WebUI, and model loading within a Docker conta
 1. **Build the Docker image:**
 
 ```
-cd Ollama-Local-Docker
-docker build --platform=linux/amd64 -t <docker-user>/mistral-rag:latest .
-docker push <docker-user>/mistral-rag:latest
+cd Webui-Ollama-Docker
+docker buildx build --platform=linux/amd64,linux/arm64 -t <docker-user>/webui-ollama:latest .
+docker push <docker-user>/webui-ollama:latest
 ```
 
-or use: `docker pull pfh42/ollama-local:latest`
+or use: `docker pull pfh42/webui-ollama:latest`
 
-https://hub.docker.com/repository/docker/pfh42/ollama-local/general
+https://hub.docker.com/repository/docker/pfh42/webui-ollama/general
 
 1. **Deploy docker image:**
 
 ```
 services:
-  ollama-local:
-    image: pfh42/ollama-local:latest
-    container_name: ollama-local
+  webui-ollama:
+    image: pfh42/webui-ollama:latest
+    container_name: webui-ollama
     ports:
       - 8080:8080
       - 11434:11434
     expose:
       - 8080
       - 11424
-    platform: linux/amd64
     environment:
       - MODEL_NAME=mistral:7b
 ```
@@ -48,6 +47,7 @@ Open your browser and navigate to `http://localhost:8080` to interact with the O
 ## Configuration
 
 * **Model**: Modify the `MODEL_NAME` environment variable in the Dockerfile to specify a different model.
+* **WEBUI_AUTH**: Modify the `WEBUI_AUTH` to **True**  if you want to setup admin login at startup. Default if __False__
 
 ## Python integration
 

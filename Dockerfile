@@ -6,6 +6,7 @@ FROM ollama/ollama:latest
 ENV OLLAMA_HOST=0.0.0.0
 # MODEL_NAME is used by the entrypoint.sh script
 ENV MODEL_NAME=mistral:7b
+ENV WEBUI_AUTH=False
 
 # Install system-level dependencies
 RUN apt-get update && \
